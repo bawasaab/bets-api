@@ -1,7 +1,11 @@
 const jwt = require('jsonwebtoken');
+let Validator = require('validatorjs');
 const User = require('../models').User;
 // const accesses = require('../config/access');
-const constans = require('../config/constants');
+const constants = require('../config/constants');
+
+let ResponseService = require('../services/ResponseService');
+let ResponseServiceObj = new ResponseService();
 
 module.exports = class AuthController {
 
@@ -11,44 +15,91 @@ module.exports = class AuthController {
 
     signUp(req, res, next) {
 
-        User.create(
-            req.body
-        )
-        .then(function (result) {
-            if (result) {
+        try {
 
-                let userData = {
-                    "id": result.id,
-                    "first_name": result.first_name,
-                    "last_name": result.last_name,
-                    "email": result.email,
-                    "dob": result.dob,
-                    "role": result.role,
-                    "status": result.status,
-                    "deletedAt": result.deletedAt,
-                    "createdAt": result.createdAt,
-                    "updatedAt": result.updatedAt
-                };
-                jwt.sign({userData}, constans.JWT_SECRET, { expiresIn: 60 * 60 }, (err, token) => {
-                    res.status(200).send({ err: [], token: 'bearer '+ token, user: userData });
-                });
-            } else {
-                response.status(400).send('Error in insert new record');
+            let in_data = req.body;
+            let rules = {
+                first_name: 'required',
+                last_name: 'required',
+                email: 'required|email',
+                password: 'required|min:6',
+                role: 'required|in:ADMIN,USER',
+                status: 'required|in:OPEN,CLOSE,DELETED',
+            };
+
+            let validation = new Validator(in_data, rules);
+            if( validation.fails() ) {
+                throw ResponseServiceObj.getFirstError( validation );
             }
-        })
-        .catch((error) => {
+            
+            User.create(
+                req.body
+            )
+            .then( async (result) => {
+                if (result) {
     
-            res.status(200).send({ err: error });
-        });
+                    let userData = {
+                        "id": result.id,
+                        "first_name": result.first_name,
+                        "last_name": result.last_name,
+                        "email": result.email,
+                        "role": result.role,
+                        "status": result.status,
+                        "deletedAt": result.deletedAt,
+                        "createdAt": result.createdAt,
+                        "updatedAt": result.updatedAt
+                    };
+
+                    let out_data = await jwt.sign({userData}, constants.JWT_SECRET, { expiresIn: 60 * 60 });
+                    return await ResponseServiceObj.sendResponse( res, {
+                        msg : 'Signup Successfull',
+                        data : {
+                            token: out_data,
+                            user: userData,
+                            image_base_url: constants.usersImagePath
+                        },
+                        cnt: 1
+                    } );
+                } else {
+                    let out_data = {
+                        msg : 'Error unable to signup'
+                    };
+                    return await ResponseServiceObj.sendException( res, out_data );
+                }
+            })
+            .catch((ex) => {
+        
+                let out_data = {
+                    msg : ex.toString()
+                };
+                return ResponseServiceObj.sendException( res, out_data );
+            });
+        } catch( ex ) {
+            let out_data = {
+                msg: ex.toString()
+            };
+            return ResponseServiceObj.sendException( res, out_data );
+        }
     }
 
     signIn( req, res, next ) {
 
-        var email = req.body.email;
-        var password = req.body.password;
-    
-        User.findOne({ where: { email: email } })
-            .then((result) => {
+        try {
+            var email = req.body.email;
+            var password = req.body.password;
+
+            let rules = {
+                email: 'required',
+                password: 'required'
+            };
+
+            let validation = new Validator(req.body, rules);
+            if( validation.fails() ) {
+                throw ResponseServiceObj.getFirstError( validation );
+            }
+        
+            User.findOne({ where: { email: email } })
+            .then( async(result) => {
     
                 if (result === null) {
     
@@ -68,19 +119,34 @@ module.exports = class AuthController {
                             "createdAt": result.createdAt,
                             "updatedAt": result.updatedAt
                         };
-        
-                        jwt.sign({userData}, constans.JWT_SECRET, { expiresIn: 60 * 60 }, (err, token) => {
-                            res.status(200).send({ err: [], token: 'bearer '+ token, user: userData });
-                        });
+
+                        let out_data = await jwt.sign({userData}, constants.JWT_SECRET, { expiresIn: 60 * 60 });
+                        return await ResponseServiceObj.sendResponse( res, {
+                            msg : 'Signin successfully',
+                            data : {
+                                token: out_data,
+                                user: userData
+                            },
+                            cnt: 1
+                        } );
                     } else {
                         throw 'Invalid password';
                     }
                 }
             })
-            .catch((error) => {
+            .catch((ex) => {
     
-                
+                let out_data = {
+                    msg: ex.toString()
+                };
+                return ResponseServiceObj.sendException( res, out_data );
             });
+        } catch( ex ) {
+            let out_data = {
+                msg: ex.toString()
+            };
+            return ResponseServiceObj.sendException( res, out_data );
+        }
     }
 
     signOut(req, res, next) {}
@@ -97,7 +163,7 @@ module.exports = class AuthController {
             const bearerToken = bearer[1];
             req.token = bearerToken;
     
-            jwt.verify(req.token, constans.JWT_SECRET, (err, authData)=>{
+            jwt.verify(req.token, constants.JWT_SECRET, (err, authData)=>{
     
                 if(err){
                     res.status(403).send({ err: err });

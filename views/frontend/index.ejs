@@ -40,10 +40,10 @@
 							</button>
 						</h1>
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-						<form>
-							<input type="email" placeholder="Enter Your Mail">
-							<input type="password" placeholder="Enter Your Password">
-							<a href="cricket.html">Login</a>
+						<form name="login_frm" id="login_frm" action="">
+							<input type="email" placeholder="Enter Your E-mail" name="email" id="email">
+							<input type="password" placeholder="Enter Your Password" name="password" id="password">
+							<a href="javascript:void(0);" onclick="login( document.getElementById('email').value, document.getElementById('password').value )">Login</a>
 							<!-- <button type="button" onclick="location.href='roullete_game.html';">Login</button> -->
 						</form>
 					</div>
@@ -720,5 +720,27 @@
 		<script src="frontend/assets/js/main.js"></script>
 
 		<script src="/socket.io/socket.io.js"></script>
+
+		<script>
+			function login( email, password ) {
+
+				$.ajax({
+					url: '/api/auth/signin',
+					method: 'POST',
+					dataType: 'JSON',
+					data: {
+						email: email,
+						password: password
+					},
+					success: function( retdata ) {
+						//function name would be the name of your same function as in this example is main_unit_master
+						console.log( 'retdata', retdata );
+					},
+					error: function(e){
+						console.log(e);
+					}
+				});
+			}
+		</script>
 	</body>
 </html>

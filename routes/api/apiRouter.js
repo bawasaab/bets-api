@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 let usersRouter = require('../users');
+let authRouter = require('../authRouter');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -14,6 +15,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.use( '/auth', authRouter );
 router.use( '/users', usersRouter );
 
 module.exports = router;
