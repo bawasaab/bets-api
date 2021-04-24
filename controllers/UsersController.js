@@ -32,9 +32,7 @@ module.exports = class UsersController {
 
             let validation = new Validator(in_data, rules);
             if( validation.fails() ) {
-                return ResponseServiceObj.sendException( res, {
-                    msg : ResponseServiceObj.getFirstError( validation )
-                } );
+                throw ResponseServiceObj.getFirstError( validation );
             }
 
             UserServiceObj.insertUser( in_data )
@@ -78,9 +76,7 @@ module.exports = class UsersController {
 
             let validation = new Validator(in_data, rules);
             if( validation.fails() ) {
-                return ResponseServiceObj.sendException( res, {
-                    msg : ResponseServiceObj.getFirstError( validation )
-                } );
+                throw ResponseServiceObj.getFirstError( validation );
             }
 
             UserServiceObj.updateUser( id, in_data )
@@ -119,9 +115,7 @@ module.exports = class UsersController {
             };
             let validation = new Validator(in_data, rules);
             if( validation.fails() ) {
-                return ResponseServiceObj.sendException( res, {
-                    msg : ResponseServiceObj.getFirstError( validation )
-                } );
+                throw ResponseServiceObj.getFirstError( validation );
             }
             UserServiceObj.deleteUserSoftlyById( id )
             .then( async( result ) => {
@@ -155,9 +149,7 @@ module.exports = class UsersController {
             };
             let validation = new Validator(in_data, rules);
             if( validation.fails() ) {
-                return ResponseServiceObj.sendException( res, {
-                    msg : ResponseServiceObj.getFirstError( validation )
-                } );
+                throw ResponseServiceObj.getFirstError( validation );
             }
             UserServiceObj.deleteUserHardlyById( id )
             .then( async( result ) => {
@@ -226,9 +218,7 @@ module.exports = class UsersController {
             };
             let validation = new Validator(in_data, rules);
             if( validation.fails() ) {
-                return ResponseServiceObj.sendException( res, {
-                    msg : ResponseServiceObj.getFirstError( validation )
-                } );
+                throw ResponseServiceObj.getFirstError( validation );
             }
             UserServiceObj.getUserById( id )
             .then( async ( result ) => {
@@ -265,9 +255,7 @@ module.exports = class UsersController {
 
             let validation = new Validator(req.body, rules);
             if( validation.fails() ) {
-                return ResponseServiceObj.sendException( res, {
-                    msg : ResponseServiceObj.getFirstError( validation )
-                } );
+                throw ResponseServiceObj.getFirstError( validation );
             }
             let in_data = {
                 profile_pic : userImageDetails.fullFileName,
@@ -275,37 +263,26 @@ module.exports = class UsersController {
             };
 
             User.update(in_data, { where: { id: id } })
-            .then((result) => {
+            .then( async (result) => {
 
                 if (result === null) {
-    
-                    return res.send({
-                        status: 200,
-                        code: 404,
-                        msg: 'Record not updated',
-                        data: result
-                    });
+                    let out_data = {
+                        msg: 'Unable to update record'
+                    };
+                    return await ResponseServiceObj.sendResponse( res, out_data );
                 } else {
-    
-                    return res.send({
-                        status: 200,
-                        code: 200,
+                    let out_data = {
                         msg: 'Record updated successfully',
-                        data: {
-                            users: result,
-                            image_base_url: constants.usersImagePath
-                        },
-                    });
+                    };
+                    return await ResponseServiceObj.sendResponse( res, out_data );
                 }
             })
-            .catch((error) => {
+            .catch((ex) => {
 
-                res.send({
-                    status: 400,
-                    code: 400,
-                    msg: 'Exception occur',
-                    data: error.toString()
-                });
+                let out_data = {
+                    msg: ex.toString()
+                };
+                return ResponseServiceObj.sendException( res, out_data );
             });
 
         } catch(ex) {
@@ -326,9 +303,7 @@ module.exports = class UsersController {
 
             let validation = new Validator(req.params, rules);
             if( validation.fails() ) {
-                return ResponseServiceObj.sendException( res, {
-                    msg : ResponseServiceObj.getFirstError( validation )
-                } );
+                throw ResponseServiceObj.getFirstError( validation );
             }
 
             UserServiceObj.isEmailExists( email )
