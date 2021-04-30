@@ -3,20 +3,50 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
+/**
+ * step-1 : connecting to third party starts 
+ */
 let url = 'ws://148.251.21.118:5570';
 const WebSocket = require('ws');
 const ws = new WebSocket(url);
+console.log('ws', ws);
+/**
+ * step-1: connecting to third party ends
+ */
+
+/**
+ * socket step 1 starts
+ */
+ var http=require("http");
+ var socketio=require("socket.io");
+ /**
+  * socket step 1 ends
+  */
 
 var indexRouter = require('./routes/index');
 
 var app = express();
-app.sockIO = ws;
-// let WebSockets = require('./utils/WebSockets');
-let WebSockets = require('./controllers/WebSocket');
-let WebSocketsObj = new WebSockets();
+app.use(cors());
 
-ws.on('connection', WebSocketsObj.connection);
+/**
+ * step-2 : connecting to third party starts 
+ */
+let WebSocketCntrl = require('./controllers/WebSocketCntrl');
+let WebSocketCntrlObj = new WebSocketCntrl(ws);
+console.log('WebSocketCntrlObj', WebSocketCntrlObj);
+/**
+ * step-2 : connecting to third party ends 
+ */
+
+/**
+ * step-3 : connecting to third party starts 
+ */
+ws.on('open', WebSocketCntrlObj.open);
+/**
+ * step-3 : connecting to third party starts 
+ */
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
