@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zxx">
+    
+
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> </title>
+        <!-- favicon -->
+        <link rel="shortcut icon" href="favicon.html" type="image/x-icon">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="frontend/assets/css/bootstrap.min.css">
+        <!-- fontawesome icon  -->
+        <link rel="stylesheet" href="frontend/assets/css/fontawesome.min.css">
+        <!-- flaticon css -->
+        <link rel="stylesheet" href="frontend/assets/fonts/flaticon.css">
+        <!-- animate.css -->
+        <link rel="stylesheet" href="frontend/assets/css/animate.css">
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="frontend/assets/css/owl.carousel.min.css">
+        <!-- magnific popup -->
+        <link rel="stylesheet" href="frontend/assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="frontend/assets/css/odometer.min.css">
+        <!-- stylesheet -->
+        <link rel="stylesheet" href="frontend/assets/css/style.css">
+        <!-- responsive -->
+        <link rel="stylesheet" href="frontend/assets/css/responsive.css">
+    </head>
+
+    <body>
+
+
+
+        <!-- bet modal begin -->
+        <div class="bet-modal-bg">
+            <div class="bet-modal">
+                <div class="bet-header">
+                    <span class="title">Predict a game</span>
+                    <button class="cls-btn"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="bet-body">
+                    <div class="place-of-bet">
+                        <span class="place-of-bet-title">real madrid</span>
+                        <input class="place-of-bet-number" type="number" value="1" readonly>
+                    </div>
+                    <div class="bet-descr">
+                        <span class="team-name team-name-1st">america</span>
+                        <span class="img-ic"><img src="frontend/assets/img/vs-icon.png" alt=""></span>
+                        <span class="team-name team-name-2nd">iran</span>
+                        <div class="team-score">[<span class="team-first-score">1</span>:<span class="team-second-score">1</span>] 1X2 Live Prediction</div>
+                    </div>
+                    <div class="ctrl-buttons">
+                        <div class="butto-shadow">
+                            <button class="ctrl-button-for-number minus-number">-</button>
+                            <input type="number" value="1" max="99" min="1" class="number-of-stake" placeholder="stake">
+                            <button class="ctrl-button-for-number plus-number">+</button>
+                        </div>
+                    </div>
+                    <div class="bet-total">
+                        <ul>
+                            <li>
+                                <span class="number-of-stake-title">stake :</span>
+                                <input class="number-of-stake-count" type="number" value="1" readonly>
+                            </li>
+                            <li>
+                                <span class="number-of-bet">Total Est. Returns :</span>
+                                <span class="number-of-bet-count">82</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bet-footer">
+                    <button>Predict Now</button>
+                </div>
+            </div>
+        </div>
+        <!-- bet modal end -->
+        
+        <!-- header begin -->
+        <div class="header">
+            <div class="header-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-sm-6">
+                            <div class="left-area">
+                                <ul>
+                                    <li>
+                                        <span class="icon">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                        <span class="text">
+                                            <span id="date"></span>
+                                            <span id="month"></span>
+                                            <span id="year"></span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="icon">
+                                            <i class="far fa-clock"></i>
+                                        </span>
+                                        <span class="text clocks">
+                                            <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-sm-6">
+                            <div class="right-area">
+                                <ul>
+                                    <li>
+                                        <select>
+                                            <option>EN</option>
+                                            <option>FR</option>
+                                            <option>ES</option>
+                                        </select>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="navbar" class="header-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 d-xl-flex d-lg-flex d-block align-items-center">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-6 d-xl-block d-lg-block d-flex align-items-center">
+                                    <div class="logo">
+                                        <a href="index.html">
+                                            <img src="frontend/assets/img/logo.png" alt="logo">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-6 d-xl-none d-lg-none d-block">
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                        <i class="fas fa-bars"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9">
+                            <div class="mainmenu">
+                                <nav class="navbar navbar-expand-lg">
+                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                        <ul class="navbar-nav ml-auto">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="index.html">Home</a>
+                                            </li>
+                                            
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="cricket.html">Cricket</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="roullete_game.html">Roulette</a>
+                                            </li>
+
+                                            <li class="nav-item dropdown log_btn">
+                                                <a class="nav-link dropdown-toggle" href="#"><i class="far fa-user my_account_drpicon"></i> My Account</a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-tachometer-alt drp_icon"></i> Dashboard</a>
+                                                    <a class="dropdown-item" href="#"><i class="far fa-user drp_icon"></i> Profile</a>
+
+                                                    <a class="dropdown-item" href="index.html"><i class="fas fa-power-off drp_icon"></i> Logout</a>
+                                                </div>
+                                            </li>
+                                            
+                                            
+                                        </ul>
+                                    </div>
+                                  </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header end -->
+
+
+
+         <!-- betting begin -->
+         <div class="betting" id="in_play">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 sports_nav">
+                       <div class="sports_nav_list">
+                           <ul>
+                               <li><a href=""><img src="frontend/assets/img/cricket.svg"/> Cricket <i class="fas fa-chevron-right"></i></a></li>
+                           </ul>
+                       </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="cricket_banner">
+                    
+                        </div>
+
+                        <div class="betting-table">
+                            <div class="row">
+                                
+                                <div class="col-xl-12 col-lg-12">
+                                    <div class="bet-tab-content">
+                                        
+                                        <div class="tab-pane" id="football" role="tabpanel" aria-labelledby="football-tab">
+                                            <div class="sport-content-title tab">
+                                                <button class="tablinks" onclick="openCity(event, 'listone')" id="defaultOpen">Live Matches</button> 
+                                                <button class="tablinks" onclick="openCity(event, 'listtwo')">Schedule Matches</button>
+                                            </div>
+                                            <div class="sports-list tabcontent" id="listone">
+
+                                                <div class="bet_list_top">
+                                                   
+                                                    <div class="bet_list_top_tp">
+                                                         <span><p>1</p></span>
+                                                         <span><p>x</p></span>
+                                                         <span><p>2</p></span>
+                                                    </div>
+
+                                                </div>
+                                               
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                    <div class="bet_list_btns_sec">
+                                                         <button>2.5</button>
+                                                         <button>2.52</button>
+
+                                                         <button>10.5</button>
+                                                         <button>11</button>
+
+                                                         <button>1.97</button>
+                                                         <button>1.98</button>
+                                                    </div>
+
+
+
+                                                    <button class="bet_list_pin"><i class="fas fa-thumbtack"></i></button>
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                    <div class="bet_list_btns_sec">
+                                                         <button>2.5</button>
+                                                         <button>2.52</button>
+
+                                                         <button>10.5</button>
+                                                         <button>11</button>
+
+                                                         <button>1.97</button>
+                                                         <button>1.98</button>
+                                                    </div>
+
+
+
+                                                    <button class="bet_list_pin"><i class="fas fa-thumbtack"></i></button>
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                    <div class="bet_list_btns_sec">
+                                                         <button>2.5</button>
+                                                         <button>2.52</button>
+
+                                                         <button>10.5</button>
+                                                         <button>11</button>
+
+                                                         <button>1.97</button>
+                                                         <button>1.98</button>
+                                                    </div>
+
+
+
+                                                    <button class="bet_list_pin"><i class="fas fa-thumbtack"></i></button>
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                    <div class="bet_list_btns_sec">
+                                                         <button>2.5</button>
+                                                         <button>2.52</button>
+
+                                                         <button>10.5</button>
+                                                         <button>11</button>
+
+                                                         <button>1.97</button>
+                                                         <button>1.98</button>
+                                                    </div>
+
+
+
+                                                    <button class="bet_list_pin"><i class="fas fa-thumbtack"></i></button>
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                    <div class="bet_list_btns_sec">
+                                                         <button>2.5</button>
+                                                         <button>2.52</button>
+
+                                                         <button>10.5</button>
+                                                         <button>11</button>
+
+                                                         <button>1.97</button>
+                                                         <button>1.98</button>
+                                                    </div>
+
+
+
+                                                    <button class="bet_list_pin"><i class="fas fa-thumbtack"></i></button>
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                    <div class="bet_list_btns_sec">
+                                                         <button>2.5</button>
+                                                         <button>2.52</button>
+
+                                                         <button>10.5</button>
+                                                         <button>11</button>
+
+                                                         <button>1.97</button>
+                                                         <button>1.98</button>
+                                                    </div>
+
+
+
+                                                    <button class="bet_list_pin"><i class="fas fa-thumbtack"></i></button>
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                    <div class="bet_list_btns_sec">
+                                                         <button>2.5</button>
+                                                         <button>2.52</button>
+
+                                                         <button>10.5</button>
+                                                         <button>11</button>
+
+                                                         <button>1.97</button>
+                                                         <button>1.98</button>
+                                                    </div>
+
+
+
+                                                    <button class="bet_list_pin"><i class="fas fa-thumbtack"></i></button>
+                                                </div>
+                                               
+                                                
+                                            </div>
+
+                                            <div class="sports-list tabcontent" id="listtwo">
+
+                                                
+                                               
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                </div>
+
+                                                <div class="bet_list">
+                                                    <a href="#" class="bet_list_team_nm">
+                                                        <span class="active_match_g"></span>
+                                                        West Indies v Sri Lanka 
+                                                        <span>Today 19:30</span> </a>
+
+                                                </div>
+
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 sports_bet_slip">
+                        <div class="sports_bet_list">
+                           <h1>Bet Slip</h1>
+
+                           <div class="bet_slip_outr">
+                             <div class="bet_slip_top_head">
+                                <h6>Back (Bet For)</h6>
+                                <p>Odds</p>
+                                <p>Stake</p>
+                                <p>Profit</p>
+                             </div>
+
+
+                             <div class="bet_slip_one">
+                                <a  class="bet_list_team_nm bet_list_team_nmm">
+                                    <span class="active_match_g"></span>India v England (ODI Series)
+
+                                     <button>X</button>
+                                </a>
+                                
+                                <div class="bet_slip_rate">
+                                    <h6>India<br>
+                                        <span>To Win Outright</span></h6>
+
+                                     <p>1.16</p> 
+                                     <input type="text"/>
+                                     <p>80.00</p> 
+                                </div>
+
+                                <div class="bet_slip_rate_btns">
+                                    <button>500</button>
+                                    <button>1000</button>
+                                    <button>1500</button>
+                                    <button>2000</button>
+                                    <button>2500</button>
+                                    <button>3000</button>
+                                </div>
+
+
+                                <p class="bet_slip_lib">Liability <span>500.00</span></p>
+                             </div>
+
+                             <div class="bet_slip_btm_btns">
+                                 <button>Camcel All</button>
+                                 <button>Place Bet</button>
+                             </div>
+                           </div>
+                        </div>
+                     </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- betting end -->
+
+      
+        
+
+       <!-- footer begin -->
+       <div class="footer" id="contact">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-xl-4 col-lg-5 col-md-10">
+                    <div class="about-widget">
+                        <a class="logo" href="index.html">
+                            <img src="frontend/assets/img/logo.png" alt="">
+                        </a>
+                       
+                        
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-5 col-md-10">
+                    <div class="about-widget">
+                       
+                        <div class="social">
+                            <ul>
+                                <li>
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-pinterest-p"></i>
+                                    </a>
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-5 col-md-10">
+                    <div class="about-widget">
+                        
+                        <div class="support">
+                            <ul>
+                                <li>
+                                    <span class="icon">
+                                        <img src="frontend/assets/img/svg/email.svg" alt="">
+                                    </span>
+                                    <span class="text">
+                                        <span class="title">Mail Us</span>
+                                        <span class="descr">don't@reply.com</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="icon">
+                                        <img src="frontend/assets/img/svg/phone-call.svg" alt="">
+                                    </span>
+                                    <span class="text">
+                                        <span class="title">Get In Touch</span>
+                                        <span class="descr">+88 015 00 00 00</span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="container">
+                    <div class="row pb-5">
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer end -->
+
+    
+
+    <!-- copyright footer begin -->
+    <div class="copyright-footer">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-xl-5 col-md-6 col-lg-6 d-lg-flex d-lg-flex d-block align-items-center">
+                    <p class="copyright-text">
+                        © copyright 2020. PRIVACY POLICY
+                    </p>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <!-- copyright footer end -->
+        
+        <!-- jquery -->
+        <!-- <script src="frontend/assets/js/jquery.js"></script> -->
+        <script src="frontend/assets/js/jquery-3.4.1.min.js"></script>
+        <!-- bootstrap -->
+        <script src="frontend/assets/js/bootstrap.min.js"></script>
+        <!-- owl carousel -->
+        <script src="frontend/assets/js/owl.carousel.js"></script>
+        <!-- magnific popup -->
+        <script src="frontend/assets/js/jquery.magnific-popup.js"></script>
+        <!-- filterizr js -->
+        <script src="frontend/assets/js/jquery.filterizr.min.js"></script>
+        <!-- wow js-->
+        <script src="frontend/assets/js/wow.min.js"></script>
+        <!-- clock js -->
+        <script src="frontend/assets/js/clock.min.js"></script>
+        <script src="frontend/assets/js/jquery.appear.min.js"></script>
+        <script src="frontend/assets/js/odometer.min.js"></script>
+        <script src="frontend/assets/js/oddometer-active.js"></script>
+        <!-- main -->
+        <script src="frontend/assets/js/main.js"></script>
+
+		<script>
+            function openCity(evt, cityName) {
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+              document.getElementById(cityName).style.display = "block";
+              evt.currentTarget.className += " active";
+            }
+            
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			var socket = io();
+			console.log('socket', socket);
+		</script>
+    </body>
+
+
+</html>
