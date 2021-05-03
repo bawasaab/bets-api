@@ -5,44 +5,38 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
+/**
+ * STEP-1 : CONNECTING TO THIRD PARTY WEBSOCKET STARTS
+ */
+let url = 'ws://148.251.21.118:5570';
+const WebSocket = require('ws');
+const ws = new WebSocket(url);
+console.log('ws', ws);
+/**
+ * STEP-1 : CONNECTING TO THIRD PARTY WEBSOCKET ENDS
+ */
+
 var indexRouter = require('./routes/index');
 
 var app = express();
 app.use(cors());
 
 /**
- * LOCAL SOCKET STARTS
+ * step-2 : CONNECTING TO THIRD PARTY WEBSOCKET STARTS
+ */
+let WebSocketCntrl = require('./controllers/WebSocketCntrl');
+let WebSocketCntrlObj = new WebSocketCntrl(ws);
+console.log('WebSocketCntrlObj', WebSocketCntrlObj);
+/**
+ * step-2 : CONNECTING TO THIRD PARTY WEBSOCKET ENDS
  */
 
-  // STEP-1 STARTS
-    var http=require("http");
-    var socketio=require("socket.io");
-  // STEP-1 ENDS
-
-  // STEP-2 STARTS
-    const server = http.createServer(app);
-    app.server = server;
-    // Create the Socket IO server on 
-    // the top of http server
-    const socket = socketio(server, {
-      cors: {
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
-      }
-    });
-    console.log('socket', socket);
-  // STEP-2 ENDS
-
-  // STEP-3 STARTS
-  var LocalSocketLib = require('./libs').LocalSocketLib;
-  var LocalSocketLibObj = new LocalSocketLib();
-  console.log('LocalSocketLibObj',LocalSocketLibObj);
-
-  socket.on( 'connect', LocalSocketLibObj.connection );
-  // STEP-3 ENDS
-
 /**
- * LOCAL SOCKET STOPS
+ * step-3 : CONNECTING TO THIRD PARTY WEBSOCKET STARTS
+ */
+ws.on('open', WebSocketCntrlObj.open);
+/**
+ * step-3 : CONNECTING TO THIRD PARTY WEBSOCKET STARTS
  */
 
 // view engine setup

@@ -18,8 +18,16 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-
-var server = http.createServer(app);
+/**
+ * LOCAL SOCKET STARTS
+ */
+  // STEP-4 STARTS
+    // var server = http.createServer(app);
+    var server = app.server;
+  // STEP-4 ENDS
+/**
+ * LOCAL SOCKET ENDS
+ */
 
 /**
  * Listen on provided port, on all network interfaces.
