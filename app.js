@@ -10,10 +10,7 @@ var indexRouter = require('./routes/index');
 var app = express();
 app.use(cors());
 
-/**
- * LOCAL SOCKET STARTS
- */
-
+/***************************************** LOCAL SOCKET STARTS *****************************************/
   // STEP-1 STARTS
     var http=require("http");
     var socketio=require("socket.io");
@@ -40,10 +37,61 @@ app.use(cors());
 
   socket.on( 'connect', LocalSocketLibObj.connection );
   // STEP-3 ENDS
+/***************************************** LOCAL SOCKET ENDS *****************************************/
 
-/**
- * LOCAL SOCKET STOPS
- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************************** THIRD PARTY SOCKET STARTS *****************************************/
+
+  /**
+   * STEP-1 : CONNECTING TO THIRD PARTY WEBSOCKET STARTS
+   */
+  let url = 'ws://148.251.21.118:5570';
+  const WebSocket = require('ws');
+  const ws = new WebSocket(url);
+  console.log('ws', ws);
+ /**
+  * STEP-1 : CONNECTING TO THIRD PARTY WEBSOCKET ENDS
+  */
+
+  /**
+   * step-2 : CONNECTING TO THIRD PARTY WEBSOCKET STARTS
+   */
+  let ThirdPartySocketLib = require('./libs/ThirdPartySocketLib');
+  let ThirdPartySocketLibObj = new ThirdPartySocketLib(ws);
+  console.log('ThirdPartySocketLibObj', ThirdPartySocketLibObj);
+  /**
+   * step-2 : CONNECTING TO THIRD PARTY WEBSOCKET ENDS
+   */
+
+  /**
+   * step-3 : CONNECTING TO THIRD PARTY WEBSOCKET STARTS
+   */
+  ws.on('open', ThirdPartySocketLibObj.open);
+  /**
+   * step-3 : CONNECTING TO THIRD PARTY WEBSOCKET STARTS
+   */
+
+/***************************************** THIRD PARTY SOCKET ENDS *****************************************/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

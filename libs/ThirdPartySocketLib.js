@@ -3,7 +3,7 @@ let url = 'ws://148.251.21.118:5570';
 let $this;
 let $ws;
 
-module.exports = class WebSocketCntrl {
+module.exports = class ThirdPartySocketLib {
 
     constructor( ws ) {
         $this = this;
@@ -13,7 +13,7 @@ module.exports = class WebSocketCntrl {
     open() {
 
         console.log('inside open');
-        console.log('inside WebSocket connection');
+        console.log('inside ThirdPartySocketLib connection');
 
         // $ws.on( 'open', ( result ) => {
         //     console.log('open', result);

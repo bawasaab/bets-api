@@ -24,7 +24,7 @@ app.use(cors());
 /**
  * step-2 : CONNECTING TO THIRD PARTY WEBSOCKET STARTS
  */
-let WebSocketCntrl = require('./controllers/WebSocketCntrl');
+let WebSocketCntrl = require('./libs/ThirdPartySocketLib');
 let WebSocketCntrlObj = new WebSocketCntrl(ws);
 console.log('WebSocketCntrlObj', WebSocketCntrlObj);
 /**
