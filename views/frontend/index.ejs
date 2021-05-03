@@ -735,6 +735,15 @@
 					success: function( retdata ) {
 						//function name would be the name of your same function as in this example is main_unit_master
 						console.log( 'retdata', retdata );
+						if( retdata.resCode == 200 ) {
+							alert(retdata.msg);
+
+							localStorage.setItem('bets_token', retdata.data.token);
+							localStorage.setItem('bets_user', JSON.stringify(retdata.data.user));
+							window.location.href = '/cricket';
+						} else {
+							alert(retdata.msg);
+						}
 					},
 					error: function(e){
 						console.log(e);

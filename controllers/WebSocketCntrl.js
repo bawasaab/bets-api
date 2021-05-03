@@ -12,6 +12,7 @@ module.exports = class WebSocketCntrl {
 
     open() {
 
+        console.log('inside open');
         console.log('inside WebSocket connection');
 
         // $ws.on( 'open', ( result ) => {
